@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render,get_object_or_404
 from django.http import Http404
+from django_filters import rest_framework as filters
 
 from rest_framework.response import Response
 from rest_framework import status, mixins, generics, viewsets
@@ -15,6 +16,7 @@ from blogs.models import Blog, Comment
 
 from .paginations import CustomPagination
 from api.filters import EmployeeFilter
+
 
 #################### Function based Views (1 Option only)####################
 
@@ -52,11 +54,11 @@ def studentDetailViews(request, pk):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-'''
-#################### Class based Views (5 Options) ####################
+
+#################### Class based Views - (5 Options) ####################
 
 ######## Option 1 - Create Class inheritance from (APIView)
-
+'''
 class Employees(APIView):
     def get(self, request):
         employees = Employee.objects.all()
@@ -90,10 +92,9 @@ class EmployeeDetail(APIView):
         employee = self.get_object(pk)
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-        
+'''
 ####### Option 2 - Create Class inheritance from (mixins + generics.GenericAPIView)
-
+'''
 class Employees(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -111,10 +112,9 @@ class EmployeeDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.
         return self.update(request, pk)
     def delete(self, request, pk):
         return self.destroy(request, pk)
-
-        
+'''        
 ######## Option 3 - Create Class inheritance from (generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView)
-
+'''
 class Employees(generics.ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -123,10 +123,9 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     lookup_field = 'pk'
-
-    
+'''    
 ######## Option 4 - Create Class inheritance from (viewsets.ViewSet)
-
+'''
 class EmployeeViewset(viewsets.ViewSet):
     def list(self, request):
         queryset = Employee.objects.all()
@@ -153,10 +152,9 @@ class EmployeeViewset(viewsets.ViewSet):
         employee = get_object_or_404(Employee, pk=pk)
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-        
+'''        
 ######## Option 5 - Create Class inheritance from (viewsets.ModelViewSet)
-
+'''
 class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -177,7 +175,7 @@ class EmployeeViewset(viewsets.ModelViewSet):
     # search_fields = ['designation', 'employee_name']
     # ordering_fields = ['id']
      
-from django_filters import rest_framework as filters
+
 class BlogsView(generics.ListCreateAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
