@@ -199,8 +199,8 @@ CORS_ALLOWED_ORIGINS = [
 
 
 # every time you restart ngrok app you have to change Forwarding distenation here.
-CSRF_TRUSTED_ORIGINS = ['https://7082-197-48-200-81.ngrok-free.app']
-BASE_URL = 'https://7082-197-48-200-81.ngrok-free.app'
+CSRF_TRUSTED_ORIGINS = ['https://06ef-197-48-200-81.ngrok-free.app']
+BASE_URL = 'https://06ef-197-48-200-81.ngrok-free.app'
 
 
 
