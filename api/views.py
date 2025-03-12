@@ -1,21 +1,18 @@
-from django.http import JsonResponse
-from django.shortcuts import render,get_object_or_404
-from django.http import Http404
+from django.contrib.auth.models import User
+from django.http import JsonResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from django_filters import rest_framework as filters
-
-from rest_framework.response import Response
 from rest_framework import status, mixins, generics, viewsets
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.decorators import api_view 
 from rest_framework.views import APIView
 from rest_framework.filters import SearchFilter, OrderingFilter
-
-from api.serializers import StudentSerializer, EmployeeSerializer, BlogSerializer, CommentSerializer
-
-from dataentry.models import Student, Employee
-from blogs.models import Blog, Comment
-
-from .paginations import CustomPagination
+from api.serializers import UserSerializer, StudentSerializer, EmployeeSerializer, BlogSerializer, CommentSerializer
+from api.paginations import CustomPagination
 from api.filters import EmployeeFilter
+from dataentry.models import Student, Employee, Blog, Comment
+
 
 
 #################### Function based Views (1 Option only)####################
@@ -164,6 +161,15 @@ class EmployeeViewset(viewsets.ModelViewSet):
 '''
 
 ################################ Clases Based Views Used ##############################
+
+
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+
 
 class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()

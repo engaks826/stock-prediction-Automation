@@ -1,16 +1,15 @@
-import datetime
-import hashlib
-import time
-import os
+import os, csv, time, hashlib, datetime
+from bs4 import BeautifulSoup
+
 from django.apps import apps
-from django.core.management.base import CommandError
-import csv
 from django.db import DataError
-from django.core.mail import EmailMessage
+from django.core.management.base import CommandError
 from django.conf import settings
+from django.core.mail import EmailMessage
 
 from emails.models import Email, Sent, EmailTracking, Subscriber
-from bs4 import BeautifulSoup
+
+
 
 def get_all_custom_models():
     default_models = ['ContentType', 'Session', 'LogEntry', 'Group', 'Permission', 'User', 'Upload']

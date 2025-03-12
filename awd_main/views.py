@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 
+
 def home(request):
     return render(request, 'home.html')
 

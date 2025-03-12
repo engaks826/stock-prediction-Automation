@@ -1,8 +1,11 @@
-from awd_main.celery import app
 import time
-from django.core.management import call_command
-from .utils import generate_csv_file, send_email_notification
+
 from django.conf import settings
+from django.core.management import call_command
+
+from awd_main.celery import app
+from dataentry.utils import generate_csv_file, send_email_notification
+
 
 
 

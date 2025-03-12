@@ -22,22 +22,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'crispy_forms',                      #####
-    'crispy_bootstrap5',                 #####
-    'ckeditor',                          #####
-    'anymail',                           #####
+    'crispy_forms',                      # pip install django-crispy-forms
+    'crispy_bootstrap5',                 # pip install crispy-bootstrap5
+    'ckeditor',                          # pip install django-ckeditor
+    'anymail',                           # pip install django-anymail
     'rest_framework',                    # pip install djangorestframework
     'rest_framework_simplejwt',          # pip install djangorestframework-simplejwt
     'django_filters',                    # pip install django-filter
     'corsheaders',                       # pip install django-cors-headers
-    'api',                               #####
-    'accounts',                          #####
-    'dataentry',                         #####
-    'uploads',                           #####
-    'emails',                            #####
-    'image_compression',                 #####
-    'stockanalysis',                     #####
-    'blogs',                             #####
+    
+    "api",                               #####
+    "dataentry",                         #####
+    "emails",                            #####
+    "stockanalysis",                     #####
 ]
 
 # Middleware  CONFIGURATION
@@ -194,7 +191,7 @@ REST_FRAMEWORK = {
 
 ####################   CORS-Headers CONF  ####################
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5174',
+    'http://localhost:5177',
 ]
 
 
